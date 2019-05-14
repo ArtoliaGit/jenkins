@@ -13,4 +13,16 @@ pipeline {
       }
     }
   }
+
+  post {
+    always {
+        echo 'post always'
+    }
+    success {
+        echo 'post success'
+    }
+    cleanup {
+        echo 'post cleanup'
+    }
+  }
 }
