@@ -1,0 +1,27 @@
+server:
+  port: 9090
+
+spring:
+  datasource:
+    dynamic:
+      datasource:
+        master:
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://127.0.0.1:3306/blog?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
+          username: root
+          password: artolia
+        db1:
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://127.0.0.1:3306/test?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
+          username: root
+          password: artolia
+        db2:
+          driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+          url: jdbc:sqlserver://192.168.1.201:1433; DatabaseName=bs_tjxt
+          username: sa
+          password: bsoft
+        db3:
+          driver-class-name: oracle.jdbc.OracleDriver
+          url: jdbc:oracle:thin:@192.168.1.203:1521:perform
+          username: pfuser
+          password: bsoft

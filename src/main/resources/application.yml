@@ -1,0 +1,57 @@
+server:
+  tomcat:
+    max-threads: 300
+
+spring:
+  profiles:
+    active: ${build.profile.id}
+
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    default-property-inclusion: NON_NULL
+  servlet:
+    multipart:
+      max-file-size: 5242880
+      max-request-size: 20971520
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    dynamic:
+      primary: master
+      hikari:
+        max-pool-size: 20
+        min-idle: 10
+        is-auto-commit: true
+        idle-timeout: 30000
+        max-lifetime: 1800000
+        connection-timeout: 30000
+
+mybatis-plus:
+  #  mapper-locations: classpath:com/bsoft/examination/mapper/*/*.xml
+  #  type-aliases-package: com.bsoft.examination.domain.*
+  global-config:
+    db-config:
+      id-type: uuid
+      field-strategy: not_null
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+    jdbc-type-for-null: 'null'
+
+swagger:
+  enabled: true
+  title: blog
+  description: blog api文档
+  version: 1.0.0 RELEASE
+
+  ui-config:
+    json-editor: true
+    show-request-headers: true
+    request-timeout: 5000
+
+  authorization:
+    name: Authorization
+    type: ApiKey
+    key-name: Authorization

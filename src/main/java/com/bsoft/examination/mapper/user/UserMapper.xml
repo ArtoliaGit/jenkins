@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bsoft.examination.mapper.user.UserMapper">
+    
+    <resultMap id="userMap" type="com.bsoft.examination.domain.auth.User">
+        <result property="userId" column="user_id" />
+        <result property="username" column="username" />
+        <result property="password" column="password" />
+        <result property="createTime" column="create_time" />
+        <collection property="roles" ofType="com.bsoft.examination.domain.auth.Role" column="user_id"
+                    select="com.bsoft.examination.mapper.role.RoleMapper.getRolesByUser" />
+    </resultMap>
+
+    <select id="findByUsername" parameterType="string"
+            resultMap="userMap">
+        select *
+        from user
+        where username = #{username}
+    </select>
+
+    <insert id="save" parameterType="com.bsoft.examination.domain.auth.User"
+            useGeneratedKeys="true" keyProperty="userId">
+        insert into user(username, password, create_time, create_user, person_name, status)
+        values(#{username}, #{password}, now(), #{createUser}, #{personName}, #{status})
+    </insert>
+
+    <select id="getUserList" parameterType="java.util.Map"
+            resultType="com.bsoft.examination.domain.auth.User">
+        select user_id, username, person_name, status, create_time, create_user from user
+        <where>
+            <if test="params.username != null and params.username != ''">
+                username = #{params.username}
+            </if>
+        </where>
+    </select>
+</mapper>

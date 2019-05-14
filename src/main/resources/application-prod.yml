@@ -1,0 +1,15 @@
+server:
+  port: 9091
+
+spring:
+  datasource:
+    dynamic:
+      datasource:
+        master:
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://127.0.0.1:3306/blog?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
+          username: root
+          password: artolia
+
+swagger:
+  enabled: false

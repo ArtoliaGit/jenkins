@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+123
+<script>
+
+
+    fetch('/file/word').then(res => {
+        debugger;
+        res.blob().then(blob => {
+            debugger;
+            var a = document.createElement('a');
+            var url = window.URL.createObjectURL(blob);
+            var filename = 'what-you-want.doc';
+            a.href = url;
+            a.download = filename;
+            a.click();
+            window.URL.revokeObjectURL(url);
+        })
+    });
+</script>
+</body>
+</html>
