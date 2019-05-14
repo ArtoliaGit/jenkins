@@ -8,8 +8,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'mvn clean package -P prod'
-        sh 'printenv'
+        bat 'mvn clean package -P prod'
       }
     }
   }
